@@ -17,7 +17,7 @@ namespace ConsoleApp1
         {
             FirstName = firstname;
             LastName = lastname;
-        } // void - returns
+        } // void - doesnt returns
 
         public string FirstName { get; set; } // FirstName - property 
         public string LastName { get; set; }
