@@ -27,6 +27,7 @@ namespace ConsoleApp1
         }
         static void cakeFunction(string pathName)
         {
+            // TASK 1: initialize Calories as int
             Console.WriteLine("Calories: ");
             string cakeCal = Console.ReadLine(); // int cakeCal = int.Parse(Console.ReadLine()); 
 
@@ -47,7 +48,7 @@ namespace ConsoleApp1
             string custLast = Console.ReadLine();
             Customer customer = new Customer(custName, custLast);
 
-            File.WriteAllText(pathName, string.Join("; ", (customer.FirstName, customer.LastName))); // TO DO: designate 
+            File.WriteAllText(pathName, string.Join("; ", (customer.FirstName, customer.LastName))); // TASK 2: designate 
 
             Console.WriteLine("What do u prefer? Cake - 1; Cupcake - 2 ");
             int sweet = int.Parse(Console.ReadLine());
