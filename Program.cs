@@ -11,35 +11,43 @@ namespace ConsoleApp1
 {
     internal class Program
     {
-        static void cupCakeFunction(string pathName) // we declare the datatype only while declaring e.g. a function
+        static void cupCakeFunction(string pathName, int quantity) // we declare the datatype only while declaring e.g. a function
         {
-            Console.WriteLine("Calories: ");
-            string cupCal = Console.ReadLine();
+            for (int i = 1; i <= quantity; i++)
+            {
+                Console.WriteLine("Cupcake №"+ i + "\n" + "Calories: ");
+                string cupCal = Console.ReadLine();
 
-            Console.WriteLine("Flavour: ");
-            string cupFlav = Console.ReadLine();
+                Console.WriteLine("Flavour: ");
+                string cupFlav = Console.ReadLine();
 
-            Console.WriteLine("Ingrediants: ");
-            string cupIngr = Console.ReadLine();
-            Cupcake cup = new Cupcake(cupCal, cupFlav, cupIngr);
+                Console.WriteLine("Ingrediants: ");
+                string cupIngr = Console.ReadLine();
+                Cupcake cup = new Cupcake(cupCal, cupFlav, cupIngr);
 
-            File.AppendAllText(pathName, string.Join("; ", ("Cupcake", cup.Calory, cup.Flavour, cup.Ingrediants))); 
+                File.AppendAllText(pathName, string.Join("; ", ("Cupcake", cup.Calory, cup.Flavour, cup.Ingrediants)));
+            }
+            
         }
-        static void cakeFunction(string pathName)
+        static void cakeFunction(string pathName, int quantity)
         {
-            // TASK 1: initialize Calories as int
-            Console.WriteLine("Calories: ");
-            string cakeCal = Console.ReadLine(); // int cakeCal = int.Parse(Console.ReadLine()); 
+            for (int i = 1; i <= quantity; i++)
+            {
+                // TASK 1: initialize Calories as int
+                Console.WriteLine("Cake №" + i + "\n" + "Calories: ");
+                string cakeCal = Console.ReadLine(); // int cakeCal = int.Parse(Console.ReadLine()); 
 
-            Console.WriteLine("Flavour: ");
-            string cakeFlav = Console.ReadLine();
-            Cake cake = new Cake(cakeCal, cakeFlav); // obj cake is created
+                Console.WriteLine("Flavour: ");
+                string cakeFlav = Console.ReadLine();
+                Cake cake = new Cake(cakeCal, cakeFlav); // obj cake is created
 
-            File.AppendAllText(pathName, string.Join("; ", ("Cake", cake.Calory, cake.Flavour)));
+                File.AppendAllText(pathName, string.Join("; ", ("Cake", cake.Calory, cake.Flavour)));
+            }
+
         }
         static void Main(string[] args)
         {
-            string pathName = "C:\\Users\\Sulpak\\source\\repos\\ConsoleApp1\\ConsoleAppProject\\myFile.txt";
+            string pathName = "C:\\Users\\Sulpak\\source\\repos\\ConsoleApp1\\ConsoleAppProject\\myBill.txt";
 
             Console.WriteLine("Name: ");
             string custName = Console.ReadLine();
@@ -50,17 +58,33 @@ namespace ConsoleApp1
 
             File.WriteAllText(pathName, string.Join("; ", (customer.FirstName, customer.LastName))); // TASK 2: designate 
 
-            Console.WriteLine("What do u prefer? Cake - 1; Cupcake - 2 ");
-            int sweet = int.Parse(Console.ReadLine());
-            switch (sweet)
+
+            while (true)
             {
-                case 1: cakeFunction(pathName); 
+                Console.WriteLine("What do u prefer? Cake - 1; Cupcake - 2; Thats it - 3 ");
+                int sweet = int.Parse(Console.ReadLine());
+                if (sweet != 3) {
+                    Console.WriteLine("Quantity: ");
+                    int quantity = int.Parse(Console.ReadLine());
+                    switch (sweet)
+                    {
+                        case 1:
+                            cakeFunction(pathName, quantity);
+                            break;
+                        default:
+                            cupCakeFunction(pathName, quantity);
+                            break;
+
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Check myBill");
                     break;
-                default: cupCakeFunction(pathName);
-                    break;
+                }
+                
             }
 
-            
             Console.ReadKey();
         }
     }
