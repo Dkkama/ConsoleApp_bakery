@@ -16,7 +16,7 @@ namespace ConsoleApp1
             for (int i = 1; i <= quantity; i++)
             {
                 Console.WriteLine("Cupcake №"+ i + "\n" + "Calories: ");
-                string cupCal = Console.ReadLine();
+                int cupCal = int.Parse(Console.ReadLine());
 
                 Console.WriteLine("Flavour: ");
                 string cupFlav = Console.ReadLine();
@@ -25,7 +25,7 @@ namespace ConsoleApp1
                 string cupIngr = Console.ReadLine();
                 Cupcake cup = new Cupcake(cupCal, cupFlav, cupIngr);
 
-                File.AppendAllText(pathName, string.Join("; ", ("Cupcake", cup.Calory, cup.Flavour, cup.Ingrediants)));
+                File.AppendAllText(pathName, string.Join("; ", i + ") Product: Cupcake", "Calories: " + cup.Calory, "Flavour: " + cup.Flavour, "Ingrediants: " + cup.Ingrediants + "\n"));
             }
             
         }
@@ -33,15 +33,14 @@ namespace ConsoleApp1
         {
             for (int i = 1; i <= quantity; i++)
             {
-                // TASK 1: initialize Calories as int
                 Console.WriteLine("Cake №" + i + "\n" + "Calories: ");
-                string cakeCal = Console.ReadLine(); // int cakeCal = int.Parse(Console.ReadLine()); 
+                int cakeCal = int.Parse(Console.ReadLine()); 
 
                 Console.WriteLine("Flavour: ");
                 string cakeFlav = Console.ReadLine();
                 Cake cake = new Cake(cakeCal, cakeFlav); // obj cake is created
 
-                File.AppendAllText(pathName, string.Join("; ", ("Cake", cake.Calory, cake.Flavour)));
+                File.AppendAllText(pathName, string.Join("; ", i + ") Product: Cake", "Calories: " + cake.Calory, "Flavour: " + cake.Flavour + "\n"));
             }
 
         }
@@ -56,7 +55,7 @@ namespace ConsoleApp1
             string custLast = Console.ReadLine();
             Customer customer = new Customer(custName, custLast);
 
-            File.WriteAllText(pathName, string.Join("; ", (customer.FirstName, customer.LastName))); // TASK 2: designate 
+            File.WriteAllText(pathName, string.Join("; ", "Name: " + customer.FirstName, "Last name: " + customer.LastName + "\n"));
 
 
             while (true)
