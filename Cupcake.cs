@@ -8,13 +8,13 @@ namespace ConsoleApp1
 {
     internal class Cupcake
     {
-        public Cupcake(string calories, string flavour, string ingrediants) {
+        public Cupcake(int calories, string flavour, string ingrediants) {
             Calory = calories;
             Flavour = flavour;
             Ingrediants = ingrediants;
         }
 
-        public string Calory { get; set; }
+        public int Calory { get; set; }
         public string Flavour { get; set; }
         public string Ingrediants { get; set; }
         
