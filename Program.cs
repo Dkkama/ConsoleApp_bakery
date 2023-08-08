@@ -11,7 +11,7 @@ namespace ConsoleApp1
 {
     internal class Program
     {
-        static void cupCakeFunction(string pathName, int quantity) // we declare the datatype only while declaring e.g. a function
+        static void cupCakeFunction(string pathName, int quantity) // we declare the datatype only when declaring e.g. a function
         {
             File.AppendAllText(pathName, "CupCake: " +  quantity + "\n");
             for (int i = 1; i <= quantity; i++)
@@ -46,7 +46,7 @@ namespace ConsoleApp1
             }
 
         }
-        static void customerFunction(string pathName, int custCake, int custCup)
+        static void customerFunction(string pathName)
         {
             Console.WriteLine("Name: ");
             string custName = Console.ReadLine();
@@ -54,7 +54,7 @@ namespace ConsoleApp1
             Console.WriteLine("Last name: ");
             string custLast = Console.ReadLine();
             
-            Customer customer = new Customer(custName, custLast, custCake, custCup);
+            Customer customer = new Customer(custName, custLast);
 
 
             File.AppendAllText(pathName, string.Join("; ", "Name: " + customer.FirstName, "Last name: " + customer.LastName + "\n"));
@@ -76,11 +76,11 @@ namespace ConsoleApp1
                     switch (sweet)
                     {
                         case 1:
-                            custCake += quantity;
+                            custCake = quantity;
                             cakeFunction(pathName, quantity);
                             break;
                         default:
-                            custCup += quantity;
+                            custCup = quantity;
                             cupCakeFunction(pathName, quantity);
                             break;
 
@@ -88,7 +88,7 @@ namespace ConsoleApp1
                 }
                 else
                 {
-                    customerFunction(pathName, custCake, custCup);
+                    customerFunction(pathName);
                     Console.WriteLine("Check myBill");
                     break;
                 }
