@@ -12,7 +12,7 @@ namespace ConsoleApp1
 {
     internal class Program
     {
-        static void cupCakeFunction(string pathName, int quantity, object orderArray) // we declare the datatype only when declaring e.g. a function
+        static void cupCakeFunction(string pathName, int quantity) // we declare the datatype only when declaring e.g. a function
         {
             File.AppendAllText(pathName, "CupCake: " +  quantity + "\n");
             for (int i = 1; i <= quantity; i++)
@@ -26,14 +26,14 @@ namespace ConsoleApp1
                 Console.WriteLine("Ingrediants: ");
                 string cupIngr = Console.ReadLine();
                 Cupcake cup = new Cupcake(cupCal, cupFlav, cupIngr);
-                orderArray.Add(cupCal, cupFlav, cupIngr);
+                // orderArray.Add(cupCal, cupFlav, cupIngr);
                 // orderArray.Append(cupCal, cupFlav, cupIngr);
 
                 File.AppendAllText(pathName, string.Join("; ", i + ") " + "Calories: " + cup.Calory, "Flavour: " + cup.Flavour, "Ingrediants: " + cup.Ingrediants + "\n"));
             }
             
         }
-        static void cakeFunction(string pathName, int quantity, object orderArray)
+        static void cakeFunction(string pathName, int quantity)
         {
             File.AppendAllText(pathName, "Cake: " + quantity + "\n");
             for (int i = 1; i <= quantity; i++)
@@ -44,13 +44,13 @@ namespace ConsoleApp1
                 Console.WriteLine("Flavour: ");
                 string cakeFlav = Console.ReadLine();
                 Cake cake = new Cake(cakeCal, cakeFlav); // obj cake is created
-                orderArray.Add(cakeCal, cakeFlav);
+                // orderArray.Add(cakeCal, cakeFlav);
 
                 File.AppendAllText(pathName, string.Join("; ", i + ") " + "Calories: " + cake.Calory, "Flavour: " + cake.Flavour + "\n"));
             }
 
         }
-        static void customerFunction(string pathName, object orderArray)
+        static void customerFunction(string pathName)
         {
             Console.WriteLine("Name: ");
             string custName = Console.ReadLine();
@@ -58,7 +58,7 @@ namespace ConsoleApp1
             Console.WriteLine("Last name: ");
             string custLast = Console.ReadLine();
             
-            Customer customer = new Customer(custName, custLast, orderArray);
+            Customer customer = new Customer(custName, custLast);
 
 
             File.AppendAllText(pathName, string.Join("; ", "Name: " + customer.FirstName, "Last name: " + customer.LastName + "\n"));
@@ -74,7 +74,7 @@ namespace ConsoleApp1
                 int custCup = 0;
                 // ArrayList orderArray = new ArrayList();
                 //var orderArray = new List<object>();
-                List<object> orderArray = new List<object>();
+                // List<object> orderArray = new List<object>();
 
                 Console.WriteLine("What do u prefer? Cake - 1; Cupcake - 2; Thats it - 3 ");
                 int sweet = int.Parse(Console.ReadLine());
@@ -85,18 +85,18 @@ namespace ConsoleApp1
                     {
                         case 1:
                             custCake = quantity;
-                            cakeFunction(pathName, quantity, orderArray);
+                            cakeFunction(pathName, quantity);
                             break;
                         default:
                             custCup = quantity;
-                            cupCakeFunction(pathName, quantity, orderArray);
+                            cupCakeFunction(pathName, quantity);
                             break;
 
                     }
                 }
                 else
                 {
-                    customerFunction(pathName, orderArray);
+                    customerFunction(pathName);
                     Console.WriteLine("Check myBill");
                     break;
                 }
