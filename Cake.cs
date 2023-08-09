@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal class Cake
+    internal class Cake : Confectionary
     {
         public Cake(int calories, string flavour)
         {
@@ -14,8 +14,6 @@ namespace ConsoleApp1
             Flavour = flavour;
         }
 
-        public int Calory { get; set; }
-        public string Flavour { get; set; }
 
     }
 }
